@@ -1,41 +1,54 @@
+<head><link rel="stylesheet" href="../css/feedback_form.css">
+</head>
 <?php
 include 'connection.php';
 session_start();
 
 if (!isset($_SESSION['UserID'])) {
-    die("Access denied. Please log in.");
+    die("<div class='container'><div class='sidebar'><h2>Access Denied</h2></div>
+         <div class='main-content'><header><h1>Please Log In</h1></header></div></div>");
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $userID = $_SESSION['UserID'];
     $itineraryID = $_POST['ItineraryID'];
-    $description = $_POST['Description'];
+    $reportDescription = $_POST['ReportDescription'];
     $totalSpent = $_POST['TotalSpent'];
 
-    // Validate that the selected itinerary belongs to the user
-    $validateSql = "
-        SELECT 1 
-        FROM itinerary 
-        WHERE ItineraryID = ? AND UserID = ?";
-    $validateStmt = $conn->prepare($validateSql);
-    $validateStmt->bind_param("ii", $itineraryID, $userID);
-    $validateStmt->execute();
-    $validateResult = $validateStmt->get_result();
-
-    if ($validateResult->num_rows > 0) {
-        // Insert report into the database
-        $insertSql = "
-            INSERT INTO report (ItineraryID, Description, TotalSpent) 
-            VALUES (?, ?, ?)";
-        $insertStmt = $conn->prepare($insertSql);
-        $insertStmt->bind_param("isd", $itineraryID, $description, $totalSpent);
-        if ($insertStmt->execute()) {
-            echo "Report submitted successfully!";
-        } else {
-            echo "Error submitting report: " . $conn->error;
-        }
-    } else {
-        echo "Invalid itinerary selection.";
+    if (empty($reportDescription) || empty($totalSpent)) {
+        die("<div class='container'><div class='sidebar'><h2>Error</h2></div>
+             <div class='main-content'><header><h1>All Fields Are Required</h1></header></div></div>");
     }
+
+    $sqlInsertReport = "
+        INSERT INTO report (ItineraryID, Description, TotalSpent) 
+        VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sqlInsertReport);
+    $stmt->bind_param("isd", $itineraryID, $reportDescription, $totalSpent);
+
+    echo "<div class='container'>
+            <div class='sidebar'>
+                <h2>User Panel</h2>
+                <ul class='user-tools'>
+                    <li><a href='dashboard.php'>Dashboard</a></li>
+                    <li><a href='logout.php'>Logout</a></li>
+                </ul>
+            </div>
+            <div class='main-content'>";
+
+    if ($stmt->execute()) {
+        echo "<header><h1>Report Submitted Successfully</h1></header>
+              <a href='feedback_report.php' class='button'>Go Back</a>";
+    } else {
+        echo "<header><h1>Error Submitting Report</h1></header>
+              <p>" . $stmt->error . "</p>";
+    }
+
+    echo "</div></div>";
+
+    $stmt->close();
+    $conn->close();
+} else {
+    die("<div class='container'><div class='sidebar'><h2>Error</h2></div>
+         <div class='main-content'><header><h1>Invalid Request Method</h1></header></div></div>");
 }
 ?>

@@ -38,20 +38,20 @@ body {
     font-style: italic;
 }
 
-.sign-in-box {
+.sign-up-box {
     background-color: #21215E;
     color: white;
 }
 
-.sign-in-box h2 {
+.sign-up-box h2 {
     font-size: 24px;
 }
 
-.sign-in-box p {
+.sign-up-box p {
     margin: 20px 0;
 }
 
-.sign-in-btn {
+.sign-up-btn {
     background-color: transparent;
     border: 1px solid white;
     color: white;
@@ -64,29 +64,30 @@ body {
     font-size: 14px;
 }
 
-.sign-in-btn:hover {
+.sign-up-btn:hover {
     background-color: white;
     color: #2e2c72;
 }
 
-.create-account-box {
+.account-box {
     background-color: #ffffff;
-    /* display: flex; */
-    /* justify-content: center; */
-    align-items: center;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
 }
 
-.create-account-box h2 {
+.account-box h2 {
     font-size: 24px;
     color: #21215E;
 }
 
-.create-account-box form {
+.account-box form {
     display: flex;
     flex-direction: column;
 }
 
-.create-account-box input {
+.account-box input {
     margin-bottom: 15px;
     padding: 10px;
     border-radius: 5px;
@@ -95,10 +96,23 @@ body {
 }
 
 #account{
-    font-size: 40px;
+    font-size: 55px;
+    padding-bottom: 20px;
 }
 
-.sign-up-btn {
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* input[type="number"] {
+  -moz-appearance: textfield;
+} */
+
+
+.sign-in-btn {
     background-color: #21215E;
     color: white;
     border: none;
@@ -116,7 +130,17 @@ body {
     margin-top: 9px;
 }
 
-.sign-up-btn:hover {
+.sign-in-btn:hover {
     background-color: #21215E;
+}
+
+.forgot-password{
+    text-decoration: none;
+    color: #21215E;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
 

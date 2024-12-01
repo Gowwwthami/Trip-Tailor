@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+  
 body {
     font-family: Arial, sans-serif;
     background-color: #e7f2f4;
@@ -16,6 +16,7 @@ body {
     padding-bottom: 3%;
 }
 
+  
 .container {
     display: flex;
     background-color: white;
@@ -23,6 +24,7 @@ body {
     border-radius: 20px;
     width: 94%;
     height: auto;
+    min-height: 90vh;
     overflow: hidden;
 }
 
@@ -49,18 +51,18 @@ body {
     font-size: 1.5vw;
     width: 80%;
 }
-
-.admin-tools {
+  
+.user-tools {
     list-style: none;
     padding: 0;
 }
 
-.admin-tools li {
+.user-tools li {
     margin: 20px 0;
     width: 100%;
 }
 
-.admin-tools li a {
+.user-tools li a {
     background-color: transparent;
     border: 1px solid white;
     color: white;
@@ -74,40 +76,85 @@ body {
     display: block;
 }
 
-.admin-tools li a:hover {
+.user-tools li a:hover {
     background-color: white;
     color: #2e2c72;
     text-decoration: none;
 }
-
+  
 .main-content {
-    flex-grow: 1;
+    width: 75%;
+    background-color: #ffffff;
     padding: 20px;
-    background-color: white;
-    border-radius: 20px;
 }
-
-.header {
-    display: flex;
+  
+header {
+    display: flex;;
     flex-direction: column;
-    justify-content: flex-start;
-    align-content: flex-end;
-    margin-top: 20px;
-    margin-bottom: 40px;
-    height: 35%;
-    width: 100%;
+    margin-bottom: 20px;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 3vh;
+}
+  
+header h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 3vh;
 }
 
-.header h1 {
-    display: flex;
-    justify-content: flex-end;
-    font-size: 2.75vw;
-    /* font-size: 36px; */
-    color: #21215E;
+header p {
+    font-size: 1rem;
+    color: #333;
+}
+  
+.travel-plans {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    gap: 3vw;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 3vh;
+}
+  
+@media (max-width: 1024px) {
+    .travel-plans {
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .travel-plans {
+        grid-template-columns: 1fr;
+    }
+}
+
+.plan {
+    background-color: #E5F4F5;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.plan:hover {
+    background-color: #def5f7;
+}
+
+.plan a{
+    text-decoration: none;
 }
 
 
-
-
-
-
+.plan h3 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-top: 3vh;
+}
+  
+.plan p {
+    color: #555;
+    font-size: 0.9rem;
+    padding-top: 0.7vh;
+    padding-bottom: 3vh;
+}

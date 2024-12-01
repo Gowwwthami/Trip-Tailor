@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -25,12 +24,14 @@ $conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dashboard.css">
     <title>Dashboard</title>
 </head>
+
 <body>
     <div class="container">
         <!-- Sidebar -->
@@ -38,8 +39,9 @@ $conn->close();
             <h2>Trip Tailor</h2>
             <h3>User Tools</h3>
             <ul class="user-tools">
+                <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="php/destinationlist.php">Explore and Select destinations</a></li>
-                <li><a href="#">Manage your Itinerary</a></li>
+                <li><a href="Itinerary.php">Manage your Itinerary</a></li>
                 <li><a href="php/feedback_report.php">Report and Feedback</a></li>
                 <li><a href="php/profile_management.php">Profile Management</a></li>
             </ul>
@@ -62,7 +64,7 @@ $conn->close();
                 </div>
             </div>
         </div>
-        
+
         <div class="main-content">
             <div class="header">
                 <h1>Welcome,</h1>
@@ -71,7 +73,7 @@ $conn->close();
                     <div class="user-image"></div>
                 </div>
             </div>
-            
+
             <div class="calendar-container">
                 <div class="header1">
                     <h2 class="calendar-title">Calendar</h2>
@@ -93,7 +95,7 @@ $conn->close();
                         <!-- Dates displayed here -->
                     </tbody>
                 </table>
-        
+
                 <!-- Modal for selecting month and year -->
                 <div id="modal" class="modal">
                     <div class="modal-content">
@@ -114,5 +116,5 @@ $conn->close();
 
     <script src="scripts/dashboard.js"></script>
 </body>
-</html>
 
+</html>
